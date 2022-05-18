@@ -1,5 +1,5 @@
 //Global Variables
-Boolean draw=false;
+Boolean draw=false, paper=false;
 float drawSurfaceX, drawSurfaceY, drawSurfaceWidth, drawSurfaceHeight, diameter;
 int reset=1;
 //
@@ -37,6 +37,12 @@ void setup() {
 }//End setup
 //
 void draw() {
+  //
+  if (paper==true) { 
+    fill(white);
+    rect(drawSurfaceX, drawSurfaceY, drawSurfaceWidth, drawSurfaceHeight);
+    paper=false;
+  }
   if (draw==true && mouseX>=drawSurfaceX && mouseX<=drawSurfaceX+drawSurfaceWidth && mouseY>=drawSurfaceY && mouseY<=drawSurfaceY+drawSurfaceHeight ) 
     line(mouseX, mouseY, pmouseX, pmouseY);
     //
@@ -82,6 +88,8 @@ void mousePressed() {
     
     //
     if (mouseX>=quitButtonX && mouseX<=quitButtonX + quitButtonWidth && mouseY>=quitButtonY && mouseY<=quitButtonY + quitButtonHeight) exit();
+    //
+    if (mouseX>=secondTextX && mouseX<=secondTextX + secondTextWidth && mouseY>=secondTextY && mouseY<=secondTextY + secondTextHeight) paper=true;
 }//End mousePressed
 //
 //End MAIN
