@@ -12,13 +12,16 @@ color black = #000000, white = #FFFFFF, red = #EA5600, quitButtonColour;
 float quitButtonX, quitButtonY, quitButtonWidth, quitButtonHeight;
 float secondTextX, secondTextY, secondTextWidth, secondTextHeight;
 //
+float buttonX1, buttonY1, buttonWidth1, buttonHeight1;
+float buttonX2, buttonY2, buttonWidth2, buttonHeight2;
+//
 void setup() {
   fullScreen();
   //
   //population
   drawSurfaceX= displayWidth*0/4;
   drawSurfaceY= displayHeight*0/5;
-  drawSurfaceWidth= displayWidth*3/4;
+  drawSurfaceWidth= displayWidth*3.6/4;
   drawSurfaceHeight= displayHeight*4/5;
   diameter = displayWidth*1/100;
   quitButtonX = displayWidth*18/20;
@@ -29,6 +32,16 @@ void setup() {
   secondTextY = displayHeight*1/10;
   secondTextWidth = quitButtonWidth;
   secondTextHeight = quitButtonHeight;
+  //
+  buttonX1 = displayWidth*0.04/4;
+  buttonY1 = displayHeight*7.1/8;
+  buttonWidth1 = displayWidth*1/9;
+  buttonHeight1 = displayHeight*1/11;
+  //
+  buttonX2 = displayWidth*0.04/4;
+  buttonY2 = displayHeight*6.4/8;
+  buttonWidth2 = displayWidth*1/9;
+  buttonHeight2 = displayHeight*1/11;
   //
   font = createFont ("Harrington", initialSize);
   //
@@ -74,16 +87,27 @@ void draw() {
     size = 20; 
     textFont(font, size);
     text(secondTextString, secondTextX, secondTextY, secondTextWidth, secondTextHeight);
+    //
+    //
+    { fill(white);
+    rect(buttonX1, buttonY1, buttonWidth1, buttonHeight1); }
+    //
+    { fill(white);
+    rect(buttonX2, buttonY2, buttonWidth2, buttonHeight2); }
+    //
+    fill(black);
 }//End draw
 //
 void keyPressed() {}//End keyPressed
 //
 void mousePressed() {
+  
   if (mouseX>=drawSurfaceX && mouseX<=drawSurfaceX+drawSurfaceWidth && mouseY>=drawSurfaceY && mouseY<=drawSurfaceY+drawSurfaceHeight);
     if (draw==true) {
       draw=false;
     } else {
       draw=true;
+      
     }
     
     //
