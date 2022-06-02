@@ -236,8 +236,8 @@ void mousePressed() {
       pencil=true;}
     //
     //colou.'.'.'.. colourX1, colourY1, colourWidth1, colourHeight1
-    //if (mouseX>=colourX1 && mouseX<=colourX1 + colourWidth1 && mouseY>=colourY1 && mouseY<=colourY1 + colourHeight1)
-      
+    if (mouseX>=colourX1 && mouseX<=colourX1 + colourWidth1 && mouseY>=colourY1 && mouseY<=colourY1 + colourHeight1)
+    if 
       
       
     //
