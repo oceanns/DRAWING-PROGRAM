@@ -12,7 +12,7 @@ String brush2Text = "BRUSH 2";
 String brush3Text = "BRUSH 3";
 String pencilText = "PENCIL";
 //
-color black = #000000, white = #FFFFFF, red = #EA5600, blue = #045A83, quitButtonColour;
+color black = #000000, white = #FFFFFF, red = #F03716, blue = #6B55FF, quitButtonColour;
 float quitButtonX, quitButtonY, quitButtonWidth, quitButtonHeight;
 float secondTextX, secondTextY, secondTextWidth, secondTextHeight;
 //
@@ -23,6 +23,7 @@ float buttonX1, buttonY1, buttonWidth1, buttonHeight1;
 float buttonX2, buttonY2, buttonWidth2, buttonHeight2;
 float buttonX3, buttonY3, buttonWidth3, buttonHeight3;
 float buttonXpencil, buttonYpencil, buttonWidthpencil, buttonHeightpencil;
+float colourX1, colourY1, colourWidth1, colourHeight1;
 //
 void setup() {
   fullScreen();
@@ -69,12 +70,16 @@ void setup() {
   buttonWidth3 = displayWidth*1/9;
   buttonHeight3 = displayHeight*1/17;
   //
-  buttonXpencil = displayWidth*0.60/4;
+  buttonXpencil = displayWidth*0.80/4;
   buttonYpencil = displayHeight*6.45/8;
   buttonWidthpencil = displayWidth*1/9;
   buttonHeightpencil = displayHeight*1/11;
   font = createFont ("AngsanaNew", initialSize);
   //
+  colourX1 = displayWidth*0.5/4;
+  colourY1 = displayHeight*6.45/8;
+  colourWidth1 = displayWidth*1/20;
+  colourHeight1 = displayHeight*1/20;
   //
   stroke(black);
   fill(white);
@@ -152,10 +157,15 @@ void draw() {
     { fill(white);
     rect(buttonX3, buttonY3, buttonWidth3, buttonHeight3); }
     //
+    //
     //pencil button
     strokeWeight(2);
     { fill(white);
     rect(buttonXpencil, buttonYpencil, buttonWidthpencil, buttonHeightpencil); }
+    //
+    //
+    { fill(red);
+    rect(colourX1, colourY1, colourWidth1, colourHeight1); }
     //
     fill(black);
     //
@@ -195,7 +205,7 @@ void keyPressed() {}//End keyPressed
 //
 void mousePressed() {
   
-  if (mouseX>=drawSurfaceX && mouseX<=drawSurfaceX+drawSurfaceWidth && mouseY>=drawSurfaceY && mouseY<=drawSurfaceY+drawSurfaceHeight) draw=false; draw2=false; draw3=false; pencil=false;
+   if (mouseX>=drawSurfaceX && mouseX<=drawSurfaceX+drawSurfaceWidth && mouseY>=drawSurfaceY && mouseY<=drawSurfaceY+drawSurfaceHeight) draw=false; draw2=false; draw3=false; pencil=false;
    //
    //1st brush
     if (mouseX>=buttonX1 && mouseX<=buttonX1 + buttonWidth1 && mouseY>=buttonY1 && mouseY<=buttonY1 + buttonHeight1)
@@ -217,7 +227,7 @@ void mousePressed() {
       draw3=false;
     } else {
       draw3=true;}
-    // buttonXpencil, buttonYpencil, buttonWidthpencil, buttonHeightpencil
+    // 
     //pencil button lololol
     if (mouseX>=buttonXpencil && mouseX<=buttonXpencil + buttonWidthpencil && mouseY>=buttonYpencil && mouseY<=buttonYpencil + buttonHeightpencil)
       if (pencil==true) {
@@ -225,6 +235,11 @@ void mousePressed() {
     } else {
       pencil=true;}
     //
+    //colou.'.'.'.. colourX1, colourY1, colourWidth1, colourHeight1
+    //if (mouseX>=colourX1 && mouseX<=colourX1 + colourWidth1 && mouseY>=colourY1 && mouseY<=colourY1 + colourHeight1)
+      
+      
+      
     //
     if (mouseX>=quitButtonX && mouseX<=quitButtonX + quitButtonWidth && mouseY>=quitButtonY && mouseY<=quitButtonY + quitButtonHeight) exit();
     //
