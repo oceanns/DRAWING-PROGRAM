@@ -1,5 +1,5 @@
 //Global Variables
-Boolean draw=false, draw2=false, draw3=false, paper=false, pencil=false;
+Boolean draw=false, draw2=false, draw3=false, paper=false, pencil=false, strokeColour=false, strokeColour2=false, strokeColour3=false;
 float drawSurfaceX, drawSurfaceY, drawSurfaceWidth, drawSurfaceHeight, diameter, diameter2, diameter3;
 int reset=1;
 //
@@ -12,7 +12,7 @@ String brush2Text = "BRUSH 2";
 String brush3Text = "BRUSH 3";
 String pencilText = "PENCIL";
 //
-color black = #000000, white = #FFFFFF, red = #F03716, blue = #6B55FF, quitButtonColour;
+color black = #000000, white = #FFFFFF, red = #F03716, blue =#504EE3 , blueBG = #6B55FF, quitButtonColour;
 float quitButtonX, quitButtonY, quitButtonWidth, quitButtonHeight;
 float secondTextX, secondTextY, secondTextWidth, secondTextHeight;
 //
@@ -24,6 +24,8 @@ float buttonX2, buttonY2, buttonWidth2, buttonHeight2;
 float buttonX3, buttonY3, buttonWidth3, buttonHeight3;
 float buttonXpencil, buttonYpencil, buttonWidthpencil, buttonHeightpencil;
 float colourX1, colourY1, colourWidth1, colourHeight1;
+float colourX2, colourY2, colourWidth2, colourHeight2;
+float colourX3, colourY3, colourWidth3, colourHeight3;
 //
 void setup() {
   fullScreen();
@@ -81,6 +83,15 @@ void setup() {
   colourWidth1 = displayWidth*1/20;
   colourHeight1 = displayHeight*1/20;
   //
+  colourX2 = displayWidth*0.5/4;
+  colourY2 = displayHeight*6.95/8;
+  colourWidth2 = displayWidth*1/20;
+  colourHeight2 = displayHeight*1/20;
+  //
+  colourX3 = displayWidth*0.5/4;
+  colourY3 = displayHeight*7.45/8;
+  colourWidth3 = displayWidth*1/20;
+  colourHeight3 = displayHeight*1/20;
   stroke(black);
   fill(white);
   strokeWeight(4);
@@ -90,15 +101,15 @@ void setup() {
 void draw() {
   //
   
-  { fill(blue);
-    stroke(blue);
+  { fill(blueBG);
+    stroke(blueBG);
     rect(BGX1, BGY1, BGWidth1, BGHeight1); }
   //
-  { fill(blue);
+  { fill(blueBG);
     rect(BGX2, BGY2, BGWidth2, BGHeight2); }
   //
   //
-  stroke(black);
+  
   if (paper==true) { 
     fill(white);
     rect(drawSurfaceX, drawSurfaceY, drawSurfaceWidth, drawSurfaceHeight);
@@ -107,15 +118,18 @@ void draw() {
   //if (draw==true && mouseX>=drawSurfaceX && mouseX<=drawSurfaceX+drawSurfaceWidth && mouseY>=drawSurfaceY && mouseY<=drawSurfaceY+drawSurfaceHeight ) 
   // line(mouseX, mouseY, pmouseX, pmouseY);
   //
-  fill(black);
-  if (draw==true && mouseX>=drawSurfaceX && mouseX<=drawSurfaceX+drawSurfaceWidth && mouseY>=drawSurfaceY && mouseY<=drawSurfaceY+drawSurfaceHeight) 
+    noStroke();
+    if (strokeColour==true) fill(red); else fill(black);
+    if (draw==true && mouseX>=drawSurfaceX && mouseX<=drawSurfaceX+drawSurfaceWidth && mouseY>=drawSurfaceY && mouseY<=drawSurfaceY+drawSurfaceHeight) 
     ellipse( mouseX, mouseY, diameter, diameter );
     //
     //
-  if (draw2==true && mouseX>=drawSurfaceX && mouseX<=drawSurfaceX+drawSurfaceWidth && mouseY>=drawSurfaceY && mouseY<=drawSurfaceY+drawSurfaceHeight) 
+    if (strokeColour==true) fill(red); else fill(black);
+    if (draw2==true && mouseX>=drawSurfaceX && mouseX<=drawSurfaceX+drawSurfaceWidth && mouseY>=drawSurfaceY && mouseY<=drawSurfaceY+drawSurfaceHeight) 
     ellipse( mouseX, mouseY, diameter2, diameter2 );
     //
     //
+    if (strokeColour==true) fill(red); else fill(black); 
     if (draw3==true && mouseX>=drawSurfaceX && mouseX<=drawSurfaceX+drawSurfaceWidth && mouseY>=drawSurfaceY && mouseY<=drawSurfaceY+drawSurfaceHeight) 
     ellipse( mouseX, mouseY, diameter3, diameter3 );
     //
@@ -126,6 +140,7 @@ void draw() {
     } else {
       quitButtonColour = black; 
     }
+    stroke(black);
     fill(quitButtonColour);
     rect(quitButtonX, quitButtonY, quitButtonWidth, quitButtonHeight);
     //
@@ -147,6 +162,7 @@ void draw() {
     //
     //
     //
+    stroke(black);
     strokeWeight(2);
     { fill(white);
     rect(buttonX1, buttonY1, buttonWidth1, buttonHeight1); }
@@ -166,6 +182,12 @@ void draw() {
     //
     { fill(red);
     rect(colourX1, colourY1, colourWidth1, colourHeight1); }
+    //
+    { fill(blue);
+    rect(colourX2, colourY2, colourWidth2, colourHeight2); }
+    //
+    { fill(black);
+    rect(colourX3, colourY3, colourWidth3, colourHeight3); }
     //
     fill(black);
     //
@@ -237,7 +259,25 @@ void mousePressed() {
     //
     //colou.'.'.'.. colourX1, colourY1, colourWidth1, colourHeight1
     if (mouseX>=colourX1 && mouseX<=colourX1 + colourWidth1 && mouseY>=colourY1 && mouseY<=colourY1 + colourHeight1)
-    if 
+      if (strokeColour==true) {
+      strokeColour2=false;
+      strokeColour3=false;
+    } else {
+      strokeColour=true;}
+    //
+    if (mouseX>=colourX2 && mouseX<=colourX2 + colourWidth2 && mouseY>=colourY2 && mouseY<=colourY1 + colourHeight2)
+      if (strokeColour2==true) {
+      strokeColour=false;
+      strokeColour3=false;
+    } else {
+      strokeColour2=true;}
+    //
+    if (mouseX>=colourX3 && mouseX<=colourX3 + colourWidth3 && mouseY>=colourY3 && mouseY<=colourY3 + colourHeight3)
+      if (strokeColour3==true) {
+      strokeColour=false;
+      strokeColour2=false;
+    } else {
+      strokeColour3=true;}
       
       
     //
