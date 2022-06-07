@@ -1,4 +1,6 @@
 //Global Variables
+color drawColour;
+//
 Boolean draw=false, draw2=false, draw3=false, paper=false, pencil=false, strokeColour=false, strokeColour2=false, strokeColour3=false;
 float drawSurfaceX, drawSurfaceY, drawSurfaceWidth, drawSurfaceHeight, diameter, diameter2, diameter3;
 int reset=1;
@@ -124,7 +126,7 @@ void draw() {
     ellipse( mouseX, mouseY, diameter, diameter );
     //
     //
-    if (strokeColour==true) fill(red); else fill(black);
+    
     if (draw2==true && mouseX>=drawSurfaceX && mouseX<=drawSurfaceX+drawSurfaceWidth && mouseY>=drawSurfaceY && mouseY<=drawSurfaceY+drawSurfaceHeight) 
     ellipse( mouseX, mouseY, diameter2, diameter2 );
     //
@@ -258,26 +260,16 @@ void mousePressed() {
       pencil=true;}
     //
     //colou.'.'.'.. colourX1, colourY1, colourWidth1, colourHeight1
-    if (mouseX>=colourX1 && mouseX<=colourX1 + colourWidth1 && mouseY>=colourY1 && mouseY<=colourY1 + colourHeight1)
-      if (strokeColour==true) {
-      strokeColour2=false;
-      strokeColour3=false;
-    } else {
-      strokeColour=true;}
+    if (strokeColour == true && mouseX>=colourX1 && mouseX<=colourX1 + colourWidth1 && mouseY>=colourY1 && mouseY<=colourY1 + colourHeight1)
+      drawColour = red;
+      
     //
-    if (mouseX>=colourX2 && mouseX<=colourX2 + colourWidth2 && mouseY>=colourY2 && mouseY<=colourY1 + colourHeight2)
-      if (strokeColour2==true) {
-      strokeColour=false;
-      strokeColour3=false;
-    } else {
-      strokeColour2=true;}
+    if (strokeColour == true && mouseX>=colourX2 && mouseX<=colourX2 + colourWidth2 && mouseY>=colourY2 && mouseY<=colourY1 + colourHeight2)
+      drawColour = blue;
+      
     //
-    if (mouseX>=colourX3 && mouseX<=colourX3 + colourWidth3 && mouseY>=colourY3 && mouseY<=colourY3 + colourHeight3)
-      if (strokeColour3==true) {
-      strokeColour=false;
-      strokeColour2=false;
-    } else {
-      strokeColour3=true;}
+    if (strokeColour == true && mouseX>=colourX3 && mouseX<=colourX3 + colourWidth3 && mouseY>=colourY3 && mouseY<=colourY3 + colourHeight3)
+      drawColour = black;
       
       
     //
