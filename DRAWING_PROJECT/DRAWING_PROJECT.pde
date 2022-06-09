@@ -1,5 +1,5 @@
 //Global Variables
-color drawColour;
+color drawColour ;
 //
 Boolean draw=false, draw2=false, draw3=false, paper=false, pencil=false, strokeColour=false, strokeColour2=false, strokeColour3=false;
 float drawSurfaceX, drawSurfaceY, drawSurfaceWidth, drawSurfaceHeight, diameter, diameter2, diameter3;
@@ -14,7 +14,7 @@ String brush2Text = "BRUSH 2";
 String brush3Text = "BRUSH 3";
 String pencilText = "PENCIL";
 //
-color black = #000000, white = #FFFFFF, red = #F03716, blue =#504EE3 , blueBG = #6B55FF, quitButtonColour;
+color black = #000000, white = #FFFFFF, red = #F03716, blue = #5159E0 , BG = #BCBDD3, quitButtonColour, green =#65DB5B, yellow = #E4EA34, purple = #881EB7 ;
 float quitButtonX, quitButtonY, quitButtonWidth, quitButtonHeight;
 float secondTextX, secondTextY, secondTextWidth, secondTextHeight;
 //
@@ -28,6 +28,9 @@ float buttonXpencil, buttonYpencil, buttonWidthpencil, buttonHeightpencil;
 float colourX1, colourY1, colourWidth1, colourHeight1;
 float colourX2, colourY2, colourWidth2, colourHeight2;
 float colourX3, colourY3, colourWidth3, colourHeight3;
+float colourX4, colourY4, colourWidth4, colourHeight4;
+float colourX5, colourY5, colourWidth5, colourHeight5;
+float colourX6, colourY6, colourWidth6, colourHeight6;
 //
 void setup() {
   fullScreen();
@@ -37,6 +40,7 @@ void setup() {
   drawSurfaceY= displayHeight*0/5;
   drawSurfaceWidth= displayWidth*3.6/4;
   drawSurfaceHeight= displayHeight*4/5;
+  //
   diameter = displayWidth*1/120;
   diameter2 = displayWidth*1/50;
   diameter3= displayWidth*1/30;
@@ -74,26 +78,41 @@ void setup() {
   buttonWidth3 = displayWidth*1/9;
   buttonHeight3 = displayHeight*1/17;
   //
-  buttonXpencil = displayWidth*0.80/4;
+  buttonXpencil = displayWidth*1/4;
   buttonYpencil = displayHeight*6.45/8;
   buttonWidthpencil = displayWidth*1/9;
   buttonHeightpencil = displayHeight*1/11;
   font = createFont ("AngsanaNew", initialSize);
   //
-  colourX1 = displayWidth*0.5/4;
-  colourY1 = displayHeight*6.45/8;
+  colourX1 = displayWidth*0.52/4;
+  colourY1 = displayHeight*6.5/8;
   colourWidth1 = displayWidth*1/20;
   colourHeight1 = displayHeight*1/20;
   //
-  colourX2 = displayWidth*0.5/4;
-  colourY2 = displayHeight*6.95/8;
+  colourX2 = displayWidth*0.52/4;
+  colourY2 = displayHeight*7.0/8;
   colourWidth2 = displayWidth*1/20;
   colourHeight2 = displayHeight*1/20;
   //
-  colourX3 = displayWidth*0.5/4;
-  colourY3 = displayHeight*7.45/8;
+  colourX3 = displayWidth*0.52/4;
+  colourY3 = displayHeight*7.5/8;
   colourWidth3 = displayWidth*1/20;
   colourHeight3 = displayHeight*1/20;
+  //
+  colourX4 = displayWidth*0.74/4;
+  colourY4 = displayHeight*6.5/8;
+  colourWidth4 = displayWidth*1/20;
+  colourHeight4 = displayHeight*1/20;
+  //
+  colourX5 = displayWidth*0.74/4;
+  colourY5 = displayHeight*7.0/8;
+  colourWidth5 = displayWidth*1/20;
+  colourHeight5 = displayHeight*1/20;
+  //
+  colourX6 = displayWidth*0.74/4;
+  colourY6 = displayHeight*7.5/8;
+  colourWidth6 = displayWidth*1/20;
+  colourHeight6 = displayHeight*1/20;
   stroke(black);
   fill(white);
   strokeWeight(4);
@@ -103,11 +122,11 @@ void setup() {
 void draw() {
   //
   
-  { fill(blueBG);
-    stroke(blueBG);
+  { fill(BG);
+    stroke(BG);
     rect(BGX1, BGY1, BGWidth1, BGHeight1); }
   //
-  { fill(blueBG);
+  { fill(BG);
     rect(BGX2, BGY2, BGWidth2, BGHeight2); }
   //
   //
@@ -121,17 +140,17 @@ void draw() {
   // line(mouseX, mouseY, pmouseX, pmouseY);
   //
     noStroke();
-    if (strokeColour==true) fill(red); else fill(black);
+    fill(drawColour);
     if (draw==true && mouseX>=drawSurfaceX && mouseX<=drawSurfaceX+drawSurfaceWidth && mouseY>=drawSurfaceY && mouseY<=drawSurfaceY+drawSurfaceHeight) 
     ellipse( mouseX, mouseY, diameter, diameter );
     //
     //
-    
+    fill(drawColour);
     if (draw2==true && mouseX>=drawSurfaceX && mouseX<=drawSurfaceX+drawSurfaceWidth && mouseY>=drawSurfaceY && mouseY<=drawSurfaceY+drawSurfaceHeight) 
     ellipse( mouseX, mouseY, diameter2, diameter2 );
     //
     //
-    if (strokeColour==true) fill(red); else fill(black); 
+    fill(drawColour);
     if (draw3==true && mouseX>=drawSurfaceX && mouseX<=drawSurfaceX+drawSurfaceWidth && mouseY>=drawSurfaceY && mouseY<=drawSurfaceY+drawSurfaceHeight) 
     ellipse( mouseX, mouseY, diameter3, diameter3 );
     //
@@ -191,7 +210,16 @@ void draw() {
     { fill(black);
     rect(colourX3, colourY3, colourWidth3, colourHeight3); }
     //
+    { fill(green);
+    rect(colourX4, colourY4, colourWidth4, colourHeight4); }
+    //
+    { fill(yellow);
+    rect(colourX5, colourY5, colourWidth5, colourHeight5); }
+    //
+    { fill(purple);
+    rect(colourX6, colourY6, colourWidth6, colourHeight6); }
     fill(black);
+    //
     //
     //button text
     fill(black);
@@ -260,19 +288,26 @@ void mousePressed() {
       pencil=true;}
     //
     //colou.'.'.'.. colourX1, colourY1, colourWidth1, colourHeight1
-    if (strokeColour == true && mouseX>=colourX1 && mouseX<=colourX1 + colourWidth1 && mouseY>=colourY1 && mouseY<=colourY1 + colourHeight1)
+    if (mouseX>=colourX1 && mouseX<=colourX1 + colourWidth1 && mouseY>=colourY1 && mouseY<=colourY1 + colourHeight1)
       drawColour = red;
-      
     //
-    if (strokeColour == true && mouseX>=colourX2 && mouseX<=colourX2 + colourWidth2 && mouseY>=colourY2 && mouseY<=colourY1 + colourHeight2)
+    if (mouseX>=colourX2 && mouseX<=colourX2 + colourWidth2 && mouseY>=colourY2 && mouseY<=colourY2 + colourHeight2)
       drawColour = blue;
-      
     //
-    if (strokeColour == true && mouseX>=colourX3 && mouseX<=colourX3 + colourWidth3 && mouseY>=colourY3 && mouseY<=colourY3 + colourHeight3)
+    if (mouseX>=colourX3 && mouseX<=colourX3 + colourWidth3 && mouseY>=colourY3 && mouseY<=colourY3 + colourHeight3)
       drawColour = black;
-      
-      
     //
+    if (mouseX>=colourX4 && mouseX<=colourX4 + colourWidth4 && mouseY>=colourY4 && mouseY<=colourY4 + colourHeight4)
+      drawColour = green;
+    //
+    if (mouseX>=colourX5 && mouseX<=colourX5 + colourWidth5 && mouseY>=colourY5 && mouseY<=colourY5 + colourHeight5)
+      drawColour = yellow;
+    //
+    if (mouseX>=colourX6 && mouseX<=colourX6 + colourWidth6 && mouseY>=colourY6 && mouseY<=colourY6 + colourHeight6)
+      drawColour = purple;
+      
+      //
+      //
     if (mouseX>=quitButtonX && mouseX<=quitButtonX + quitButtonWidth && mouseY>=quitButtonY && mouseY<=quitButtonY + quitButtonHeight) exit();
     //
     if (mouseX>=secondTextX && mouseX<=secondTextX + secondTextWidth && mouseY>=secondTextY && mouseY<=secondTextY + secondTextHeight) paper=true;
