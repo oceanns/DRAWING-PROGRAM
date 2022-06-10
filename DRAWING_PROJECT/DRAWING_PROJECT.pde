@@ -1,7 +1,7 @@
 //Global Variables
-color drawColour ;
+color drawColour, canvasCLR=#FFFFFF;
 //
-Boolean draw=false, draw2=false, draw3=false, paper=false, pencil=false, strokeColour=false, strokeColour2=false, strokeColour3=false;
+Boolean draw=false, draw2=false, draw3=false, paper=false, pencil=false, strokeColour=false, strokeColour2=false, strokeColour3=false, eraser=false;
 float drawSurfaceX, drawSurfaceY, drawSurfaceWidth, drawSurfaceHeight, diameter, diameter2, diameter3;
 int reset=1;
 //
@@ -13,6 +13,7 @@ String brush1Text = "BRUSH 1";
 String brush2Text = "BRUSH 2";
 String brush3Text = "BRUSH 3";
 String pencilText = "PENCIL";
+String eraserText = "ERASER";
 //
 color black = #000000, white = #FFFFFF, red = #F03716, blue = #5159E0 , BG = #BCBDD3, quitButtonColour, green =#65DB5B, yellow = #E4EA34, purple = #881EB7 ;
 float quitButtonX, quitButtonY, quitButtonWidth, quitButtonHeight;
@@ -20,6 +21,7 @@ float secondTextX, secondTextY, secondTextWidth, secondTextHeight;
 //
 float BGX1, BGY1, BGWidth1, BGHeight1;
 float BGX2, BGY2, BGWidth2, BGHeight2;
+float BGX3, BGY3, BGWidth3, BGHeight3;
 //
 float buttonX1, buttonY1, buttonWidth1, buttonHeight1;
 float buttonX2, buttonY2, buttonWidth2, buttonHeight2;
@@ -31,6 +33,7 @@ float colourX3, colourY3, colourWidth3, colourHeight3;
 float colourX4, colourY4, colourWidth4, colourHeight4;
 float colourX5, colourY5, colourWidth5, colourHeight5;
 float colourX6, colourY6, colourWidth6, colourHeight6;
+float eraserX, eraserY, eraserWidth, eraserHeight;
 //
 void setup() {
   fullScreen();
@@ -54,14 +57,19 @@ void setup() {
   secondTextHeight = quitButtonHeight;
   //
   BGX1 = displayWidth*0/4;
-  BGY1 = displayHeight*6.43/8;
+  BGY1 = displayHeight*6.4/8;
   BGWidth1 = displayWidth*2/2;
   BGHeight1 = displayHeight*2/2;
   //
-  BGX2 = displayWidth*3.61/4;
+  BGX2 = displayWidth*3.6/4;
   BGY2 = displayHeight*0/8;
   BGWidth2 = displayWidth*2/2;
   BGHeight2 = displayHeight*2/2;
+  //
+  BGX3 = displayWidth*3.5/4;
+  BGY3 = displayHeight*6.423/8;
+  BGWidth3 = displayWidth*2/2;
+  BGHeight3 = displayHeight*2/2;
   //
   buttonX1 = displayWidth*0.04/4;
   buttonY1 = displayHeight*6.45/8;
@@ -113,6 +121,12 @@ void setup() {
   colourY6 = displayHeight*7.5/8;
   colourWidth6 = displayWidth*1/20;
   colourHeight6 = displayHeight*1/20;
+  //
+  eraserX = displayWidth*1/4;
+  eraserY = displayHeight*7.2/8;
+  eraserWidth = displayWidth*1/9;
+  eraserHeight = displayHeight*1/11;
+  //
   stroke(black);
   fill(white);
   strokeWeight(4);
@@ -123,16 +137,20 @@ void draw() {
   //
   
   { fill(BG);
-    stroke(BG);
+    stroke(black);
     rect(BGX1, BGY1, BGWidth1, BGHeight1); }
   //
   { fill(BG);
     rect(BGX2, BGY2, BGWidth2, BGHeight2); }
   //
+  { fill(BG);
+    stroke(BG);
+    rect(BGX3, BGY3, BGWidth3, BGHeight3); }
   //
-  
+  //
+    stroke(canvasCLR);
   if (paper==true) { 
-    fill(white);
+    fill(canvasCLR);
     rect(drawSurfaceX, drawSurfaceY, drawSurfaceWidth, drawSurfaceHeight);
     paper=false;
   }
@@ -154,6 +172,10 @@ void draw() {
     if (draw3==true && mouseX>=drawSurfaceX && mouseX<=drawSurfaceX+drawSurfaceWidth && mouseY>=drawSurfaceY && mouseY<=drawSurfaceY+drawSurfaceHeight) 
     ellipse( mouseX, mouseY, diameter3, diameter3 );
     //
+    //
+    fill(canvasCLR);
+    if (eraser==true && mouseX>=drawSurfaceX && mouseX<=drawSurfaceX+drawSurfaceWidth && mouseY>=drawSurfaceY && mouseY<=drawSurfaceY+drawSurfaceHeight) 
+    ellipse( mouseX, mouseY, diameter2, diameter2 );
     //
     //quit button
     if ( mouseX>=quitButtonX && mouseX<=quitButtonX + quitButtonWidth && mouseY>=quitButtonY && mouseY<=quitButtonY + quitButtonHeight) {
@@ -220,6 +242,9 @@ void draw() {
     rect(colourX6, colourY6, colourWidth6, colourHeight6); }
     fill(black);
     //
+    { fill(white);
+    rect(eraserX, eraserY, eraserWidth, eraserHeight); }
+    //
     //
     //button text
     fill(black);
@@ -246,6 +271,12 @@ void draw() {
     textFont(font, size);
     text(pencilText, buttonXpencil, buttonYpencil, buttonWidthpencil, buttonHeightpencil);
     //
+    fill(black);
+    textAlign( CENTER, CENTER);
+    size = 25; 
+    textFont(font, size);
+    text(eraserText, eraserX, eraserY, eraserWidth, eraserHeight );
+    //
     //pencil
     stroke(black);
     if (pencil == true) {
@@ -257,7 +288,7 @@ void keyPressed() {}//End keyPressed
 //
 void mousePressed() {
   
-   if (mouseX>=drawSurfaceX && mouseX<=drawSurfaceX+drawSurfaceWidth && mouseY>=drawSurfaceY && mouseY<=drawSurfaceY+drawSurfaceHeight) draw=false; draw2=false; draw3=false; pencil=false;
+   if (mouseX>=drawSurfaceX && mouseX<=drawSurfaceX+drawSurfaceWidth && mouseY>=drawSurfaceY && mouseY<=drawSurfaceY+drawSurfaceHeight) draw=false; draw2=false; draw3=false; pencil=false; eraser=false;
    //
    //1st brush
     if (mouseX>=buttonX1 && mouseX<=buttonX1 + buttonWidth1 && mouseY>=buttonY1 && mouseY<=buttonY1 + buttonHeight1)
@@ -287,7 +318,7 @@ void mousePressed() {
     } else {
       pencil=true;}
     //
-    //colou.'.'.'.. colourX1, colourY1, colourWidth1, colourHeight1
+    //colour!! = colourX1, colourY1, colourWidth1, colourHeight1 // eraserX, eraserY, eraserWidth, eraserHeight
     if (mouseX>=colourX1 && mouseX<=colourX1 + colourWidth1 && mouseY>=colourY1 && mouseY<=colourY1 + colourHeight1)
       drawColour = red;
     //
@@ -305,6 +336,13 @@ void mousePressed() {
     //
     if (mouseX>=colourX6 && mouseX<=colourX6 + colourWidth6 && mouseY>=colourY6 && mouseY<=colourY6 + colourHeight6)
       drawColour = purple;
+    //
+    //
+   if (mouseX>=eraserX && mouseX<=eraserX + eraserWidth && mouseY>=eraserY && mouseY<=eraserY + eraserHeight)
+      if (eraser==true) {
+      eraser=false;
+    } else {
+      eraser=true;}
       
       //
       //
