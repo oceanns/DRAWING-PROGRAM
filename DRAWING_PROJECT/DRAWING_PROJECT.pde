@@ -2,8 +2,11 @@
 color drawColour, canvasCLR=#FFFFFF;
 //
 Boolean draw=false, draw2=false, draw3=false, paper=false, pencil=false, strokeColour=false, strokeColour2=false, strokeColour3=false, eraser=false;
+Boolean turnOnImage=false, turnOnImage2=false, turnOnImage3=false;
 float drawSurfaceX, drawSurfaceY, drawSurfaceWidth, drawSurfaceHeight, diameter, diameter2, diameter3;
 int reset=1;
+//
+PImage pic1, pic2, pic3;
 //
 PFont font;
 int initialSize=55, size;
@@ -36,6 +39,10 @@ float colourX6, colourY6, colourWidth6, colourHeight6;
 float eraserX, eraserY, eraserWidth, eraserHeight;
 float cnvsCLRX1, cnvsCLRY1, cnvsCLRWidth1, cnvsCLRHeight1;
 float cnvsCLRX2, cnvsCLRY2, cnvsCLRWidth2, cnvsCLRHeight2;
+//
+float imageX1, imageY1, imageWidth1, imageHeight1;
+float imageX2, imageY2, imageWidth2, imageHeight2;
+float imageX3, imageY3, imageWidth3, imageHeight3;
 //
 void setup() {
   fullScreen();
@@ -139,10 +146,29 @@ void setup() {
   cnvsCLRWidth2 = displayWidth*1/20;
   cnvsCLRHeight2 = displayHeight*1/20;
   //
+  imageX1 = displayWidth*2.2/4;
+  imageY1 = displayHeight*6.5/8;
+  imageWidth1 = displayWidth*1/9;
+  imageHeight1 = displayHeight*1/11;
+  //
+  imageX2 = displayWidth*2.7/4;
+  imageY2 = displayHeight*6.5/8;
+  imageWidth2 = displayWidth*1/9;
+  imageHeight2 = displayHeight*1/11;
+  //
+  imageX3 = displayWidth*3.4/4;
+  imageY3 = displayHeight*6.5/8;
+  imageWidth3 = displayWidth*1/9;
+  imageHeight3 = displayHeight*1/11;
+  //
   stroke(black);
   fill(white);
   strokeWeight(4);
   rect(drawSurfaceX, drawSurfaceY, drawSurfaceWidth, drawSurfaceHeight);
+  //
+  pic1 = loadImage("book.png");
+  pic2 = loadImage("CLR.png");
+  pic3 = loadImage("clr_book.png");
 }//End setup
 //
 void draw() {
@@ -258,6 +284,19 @@ void draw() {
     rect(eraserX, eraserY, eraserWidth, eraserHeight); }
     //
     //
+    { fill(white);
+    rect(imageX1, imageY1, imageWidth1, imageHeight1); }
+    if (turnOnImage==true) image(pic1, drawSurfaceX, drawSurfaceY, drawSurfaceWidth, drawSurfaceHeight );
+    //
+    { fill(white);
+    rect(imageX2, imageY2, imageWidth2, imageHeight2); }
+    if (turnOnImage2==true) image(pic2, drawSurfaceX, drawSurfaceY, drawSurfaceWidth, drawSurfaceHeight );
+    //
+    { fill(white);
+    rect(imageX3, imageY3, imageWidth3, imageHeight3); }
+    if (turnOnImage3==true) image(pic3, drawSurfaceX, drawSurfaceY, drawSurfaceWidth, drawSurfaceHeight );
+    //
+    //
     //button text
     fill(black);
     textAlign( CENTER, CENTER);
@@ -363,13 +402,22 @@ void mousePressed() {
     } else {
       eraser=true;}
      //
-     //cnvsCLRX1, cnvsCLRY1, cnvsCLRWidth1, cnvsCLRHeight1;
+     //cnvsCLRX1, cnvsCLRY1, cnvsCLRWidth1, cnvsCLRHeight1; imageX1, imageY1, imageWidth1, imageHeight1
    if (mouseX>=cnvsCLRX1 && mouseX<=cnvsCLRX1 + cnvsCLRWidth1 && mouseY>= cnvsCLRY1 && mouseY<=cnvsCLRY1 + cnvsCLRHeight1)
       canvasCLR = red;
      //
     if (mouseX>=cnvsCLRX2 && mouseX<=cnvsCLRX2 + cnvsCLRWidth2 && mouseY>= cnvsCLRY2 && mouseY<=cnvsCLRY2 + cnvsCLRHeight2)
       canvasCLR = white;
      //
+     //
+     if (mouseX>= imageX1 && mouseX<=imageX1 + imageWidth1 && mouseY>= imageY1 && mouseY<=imageY1 + imageHeight1)
+       turnOnImage=true;
+     //
+     if (mouseX>= imageX2 && mouseX<=imageX2 + imageWidth2 && mouseY>= imageY2 && mouseY<=imageY2 + imageHeight2)
+       turnOnImage2=true;
+     //
+     if (mouseX>= imageX3 && mouseX<=imageX3 + imageWidth3 && mouseY>= imageY3 && mouseY<=imageY3 + imageHeight3)
+       turnOnImage3=true;
      //
     if (mouseX>=quitButtonX && mouseX<=quitButtonX + quitButtonWidth && mouseY>=quitButtonY && mouseY<=quitButtonY + quitButtonHeight) exit();
     //
