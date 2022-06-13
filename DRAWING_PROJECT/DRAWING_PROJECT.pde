@@ -34,6 +34,8 @@ float colourX4, colourY4, colourWidth4, colourHeight4;
 float colourX5, colourY5, colourWidth5, colourHeight5;
 float colourX6, colourY6, colourWidth6, colourHeight6;
 float eraserX, eraserY, eraserWidth, eraserHeight;
+float cnvsCLRX1, cnvsCLRY1, cnvsCLRWidth1, cnvsCLRHeight1;
+float cnvsCLRX2, cnvsCLRY2, cnvsCLRWidth2, cnvsCLRHeight2;
 //
 void setup() {
   fullScreen();
@@ -124,8 +126,18 @@ void setup() {
   //
   eraserX = displayWidth*1/4;
   eraserY = displayHeight*7.2/8;
-  eraserWidth = displayWidth*1/9;
+  eraserWidth = displayWidth*1/9;//
   eraserHeight = displayHeight*1/11;
+  //
+  cnvsCLRX1 = displayWidth*1.5/4;
+  cnvsCLRY1 = displayHeight*6.5/8;
+  cnvsCLRWidth1 = displayWidth*1/20;
+  cnvsCLRHeight1 = displayHeight*1/20;
+  //
+  cnvsCLRX2 = displayWidth*1.9/4;
+  cnvsCLRY2 = displayHeight*6.5/8;
+  cnvsCLRWidth2 = displayWidth*1/20;
+  cnvsCLRHeight2 = displayHeight*1/20;
   //
   stroke(black);
   fill(white);
@@ -277,6 +289,13 @@ void draw() {
     textFont(font, size);
     text(eraserText, eraserX, eraserY, eraserWidth, eraserHeight );
     //
+    //cnavas clr
+    { fill(red);
+    rect(cnvsCLRX1, cnvsCLRY1, cnvsCLRWidth1, cnvsCLRHeight1); }
+    //
+    { fill(white);
+    rect(cnvsCLRX2, cnvsCLRY2, cnvsCLRWidth2, cnvsCLRHeight2); }
+    //
     //pencil
     stroke(black);
     if (pencil == true) {
@@ -311,7 +330,7 @@ void mousePressed() {
     } else {
       draw3=true;}
     // 
-    //pencil button lololol
+    //pencil button lololol 
     if (mouseX>=buttonXpencil && mouseX<=buttonXpencil + buttonWidthpencil && mouseY>=buttonYpencil && mouseY<=buttonYpencil + buttonHeightpencil)
       if (pencil==true) {
       pencil=false;
@@ -343,9 +362,15 @@ void mousePressed() {
       eraser=false;
     } else {
       eraser=true;}
-      
-      //
-      //
+     //
+     //cnvsCLRX1, cnvsCLRY1, cnvsCLRWidth1, cnvsCLRHeight1;
+   if (mouseX>=cnvsCLRX1 && mouseX<=cnvsCLRX1 + cnvsCLRWidth1 && mouseY>= cnvsCLRY1 && mouseY<=cnvsCLRY1 + cnvsCLRHeight1)
+      canvasCLR = red;
+     //
+    if (mouseX>=cnvsCLRX2 && mouseX<=cnvsCLRX2 + cnvsCLRWidth2 && mouseY>= cnvsCLRY2 && mouseY<=cnvsCLRY2 + cnvsCLRHeight2)
+      canvasCLR = white;
+     //
+     //
     if (mouseX>=quitButtonX && mouseX<=quitButtonX + quitButtonWidth && mouseY>=quitButtonY && mouseY<=quitButtonY + quitButtonHeight) exit();
     //
     if (mouseX>=secondTextX && mouseX<=secondTextX + secondTextWidth && mouseY>=secondTextY && mouseY<=secondTextY + secondTextHeight) paper=true;
