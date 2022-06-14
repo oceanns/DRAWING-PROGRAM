@@ -1,4 +1,4 @@
-//Global Variables
+ //Global Variables
 color drawColour, canvasCLR=#FFFFFF;
 //
 Boolean draw=false, draw2=false, draw3=false, draw4=false, draw5=false, paper=false, pencil=false, strokeColour=false, strokeColour2=false, strokeColour3=false, eraser=false;
