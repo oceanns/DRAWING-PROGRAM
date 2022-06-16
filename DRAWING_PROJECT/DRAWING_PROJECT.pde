@@ -1,7 +1,7 @@
  //Global Variables
 color drawColour, canvasCLR=#FFFFFF;
 //
-Boolean draw=false, draw2=false, draw3=false, draw4=false, draw5=false, paper=false, pencil=false, strokeColour=false, strokeColour2=false, strokeColour3=false, eraser=false;
+Boolean draw=false, draw2=false, draw3=false, draw4=false, draw5=false, paper=false, pencil=false, strokeColour=false, strokeColour2=false, strokeColour3=false, eraser=false, turnOnText=false;
 Boolean turnOnImage=false, turnOnImage2=false, turnOnImage3=false;
 float drawSurfaceX, drawSurfaceY, drawSurfaceWidth, drawSurfaceHeight, diameter, diameter2, diameter3;
 int reset=1;
@@ -24,6 +24,7 @@ String stencilText2 = "STENCIL 2";
 String stencilText3 = "STENCIL 3";
 String squareText = "SQUARE TOOL";
 String triangleText = "TRIANGLE TOOL";
+String text = " HOW TO USE PROGRAM: COLOURED buttons next to TRIANGLE AND SQUARE tool work to colour both the brush and shape tools, to use these select the colour then select the brush or shape tool. to stop drawing click anywhere on the canvas to stop drawing, you can also erase using the eraser button. stencils can be applied by pressing them, to get rid of them you must press RESET in top right. to use the other coloured buttons below the stencils, select the one of those coloured buttons then press RESET to apply it and this controls the background colours. TO GET RID OF THIS TEXT PRESS RESET";
 //
 color black = #000000, white = #FFFFFF, red = #F03716, blue = #5159E0 , BG = #BCBDD3, quitButtonColour, green =#65DB5B, yellow = #E4EA34, purple = #881EB7 ;
 float quitButtonX, quitButtonY, quitButtonWidth, quitButtonHeight;
@@ -38,7 +39,9 @@ float buttonX2, buttonY2, buttonWidth2, buttonHeight2;
 float buttonX3, buttonY3, buttonWidth3, buttonHeight3;
 float buttonX4, buttonY4, buttonWidth4, buttonHeight4;
 float buttonX5, buttonY5, buttonWidth5, buttonHeight5;
+float buttonX6, buttonY6, buttonWidth6, buttonHeight6;
 //
+float textX, textY, textWidth, textHeight;
 float buttonXpencil, buttonYpencil, buttonWidthpencil, buttonHeightpencil;
 float colourX1, colourY1, colourWidth1, colourHeight1;
 float colourX2, colourY2, colourWidth2, colourHeight2;
@@ -205,10 +208,22 @@ void setup() {
   imageWidth3 = displayWidth*1/9;
   imageHeight3 = displayHeight*1/13;
   //
+  textX = displayWidth*0.1/2;
+  textY = displayHeight*0.1/2;
+  textWidth = displayWidth*1/2;
+  textHeight = displayHeight*1/2;
+  //
+  buttonX6 = displayWidth*3.4/4;
+  buttonY6 = displayHeight*6/8;
+  buttonWidth6 = displayWidth*1/12;
+  buttonHeight6 = displayHeight*1/11;
+  //
   stroke(black);
   fill(white);
   strokeWeight(4);
   rect(drawSurfaceX, drawSurfaceY, drawSurfaceWidth, drawSurfaceHeight);
+  //
+  fill(black); textAlign( CENTER, CENTER); size = 25; textFont(font, size); text(text, textX, textY, textWidth, textHeight);
   //
   pic1 = loadImage("book.png");
   pic2 = loadImage("CLR.png");
@@ -284,7 +299,9 @@ void draw() {
     textFont(font, size);
     text(quitButtonString, quitButtonX, quitButtonY, quitButtonWidth, quitButtonHeight);
     //
+    //if (turnOnText==true) { fill(black); textAlign( CENTER, CENTER); size = 25; textFont(font, size); text(text, textX, textY, textWidth, textHeight);}
     //
+    //textX, textY, textWidth, textHeight
     fill(white);
     rect(secondTextX, secondTextY, secondTextWidth, secondTextHeight);
     fill(black);
@@ -312,6 +329,8 @@ void draw() {
     //
     { fill(white);
     rect(buttonX5, buttonY5, buttonWidth5, buttonHeight5); }
+    //
+     
     //
     //pencil button cnvsCLRX5, cnvsCLRY5, cnvsCLRWidth5, cnvsCLRHeight5;
     strokeWeight(2);
@@ -392,11 +411,7 @@ void draw() {
     textFont(font, size);
     text(pencilText, buttonXpencil, buttonYpencil, buttonWidthpencil, buttonHeightpencil);
     //
-    fill(black);
-    textAlign( CENTER, CENTER);
-    size = 25; 
-    textFont(font, size);
-    text(eraserText, eraserX, eraserY, eraserWidth, eraserHeight );
+    fill(black);  textAlign( CENTER, CENTER); size = 25;  textFont(font, size); text(eraserText, eraserX, eraserY, eraserWidth, eraserHeight ); 
     //
     //
     fill(black);
@@ -482,6 +497,9 @@ void mousePressed() {
       draw5=false;
     } else {
       draw5=true;}
+    //
+   
+      
     // 
     //pencil button lololol 
     if (mouseX>=buttonXpencil && mouseX<=buttonXpencil + buttonWidthpencil && mouseY>=buttonYpencil && mouseY<=buttonYpencil + buttonHeightpencil)
@@ -540,6 +558,7 @@ void mousePressed() {
        turnOnImage=false;
        turnOnImage2=false;
        turnOnImage3=false;
+       
      //
      if (mouseX>= imageX1 && mouseX<=imageX1 + imageWidth1 && mouseY>= imageY1 && mouseY<=imageY1 + imageHeight1)
        turnOnImage=true;
